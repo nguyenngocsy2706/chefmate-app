@@ -1,1 +1,1 @@
-# chefmate-
+# chefmate-app
