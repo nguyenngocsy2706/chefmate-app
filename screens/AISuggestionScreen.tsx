@@ -1,0 +1,11 @@
+﻿import React from "react";
+import { Image, Platform, SafeAreaView, ScrollView, Text, TouchableOpacity, View, useWindowDimensions } from "react-native";
+
+type AISuggestionScreenProps = {};
+
+export default function AISuggestionScreen({}: AISuggestionScreenProps) {
+  const isWeb = Platform.OS === "web";
+  const { height } = useWindowDimensions();
+  const webFrameHeight = Math.min(930, Math.max(760, height - 20));
+  return <SafeAreaView className={isWeb?"flex-1 bg-[#ECEFED] items-center justify-center p-2":"flex-1 bg-[#ECEFED]"}><View className={isWeb?"w-[390px] bg-[#ECEFED] border border-[#BFC7D3]":"flex-1 w-full bg-[#ECEFED]"} style={isWeb?{height:webFrameHeight,borderRadius:14,overflow:"hidden"}:undefined}><ScrollView contentContainerStyle={{padding:16,paddingBottom:30}}><Text className="text-[#0A7A36] font-bold">✦ CULINA INTELLIGENCE</Text><Text className="mt-3 text-[#1E2420] text-[56px] leading-[58px] font-extrabold">AI của CHEF đề xuất dựa trên sở thích của bạn</Text><Text className="mt-3 text-[#4A534C]">Chúng tôi đã phân tích khẩu vị của bạn để tạo ra thực đơn hoàn hảo.</Text><View className="mt-6 rounded-[28px] overflow-hidden bg-[#F4F5F2]"><Image source={{uri:"https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=900&q=80"}} className="h-[260px] w-full" /><View className="p-5"><Text className="text-[#2A7A44] font-bold">MÓN ĂN CHỦ ĐẠO</Text><Text className="text-[#1E2420] text-[42px] leading-[44px] font-extrabold mt-2">Cá Hồi Nướng Măng Tây Sốt Chanh Dây</Text><TouchableOpacity className="mt-5 rounded-full bg-[#0A7A36] self-start px-5 py-3"><Text className="text-white font-bold">Xem Công Thức →</Text></TouchableOpacity></View></View><View className="mt-6 rounded-[26px] bg-[#2F8A35] p-5"><Text className="text-white text-[40px] font-extrabold">Gà Áp Chảo Thảo Mộc</Text><Text className="text-[#CFE8CF] mt-2">AI nhận thấy bạn thường xuyên tìm kiếm món giàu Protein.</Text></View><Text className="mt-6 text-[#1E2420] text-[36px] font-bold text-center">Chưa ưng ý bạn?</Text><View className="mt-3 flex-row flex-wrap justify-center gap-2">{["Thay đổi khẩu vị","Ít calo hơn","Nấu nhanh hơn","Thuần chay"].map(x=><TouchableOpacity key={x} className="px-4 py-2 rounded-full bg-[#DDE3DA]"><Text>{x}</Text></TouchableOpacity>)}</View></ScrollView></View></SafeAreaView>;
+}
