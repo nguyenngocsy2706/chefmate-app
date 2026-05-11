@@ -1,0 +1,12 @@
+﻿import React from "react";
+import { Feather } from "@expo/vector-icons";
+import { Image, Platform, SafeAreaView, ScrollView, Text, TextInput, TouchableOpacity, View, useWindowDimensions } from "react-native";
+
+type SearchScreenProps = { onOpenVoice: () => void; };
+
+export default function SearchScreen({ onOpenVoice }: SearchScreenProps) {
+  const isWeb = Platform.OS === "web";
+  const { height } = useWindowDimensions();
+  const webFrameHeight = Math.min(930, Math.max(760, height - 20));
+  return <SafeAreaView className={isWeb?"flex-1 bg-[#ECEFED] items-center justify-center p-2":"flex-1 bg-[#ECEFED]"}><View className={isWeb?"w-[390px] bg-[#ECEFED] border border-[#BFC7D3]":"flex-1 w-full bg-[#ECEFED]"} style={isWeb?{height:webFrameHeight,borderRadius:14,overflow:"hidden"}:undefined}><ScrollView contentContainerStyle={{padding:20,paddingBottom:30}}><View className="flex-row items-center justify-between"><Feather name="arrow-left" size={20} color="#0A7A36" /><Text className="text-[#0A7A36] text-[32px] font-bold">Tìm kiếm</Text><Feather name="bell" size={18} color="#0A7A36" /></View><View className="mt-6 rounded-full border-2 border-[#0A7A36] px-4 py-3 flex-row items-center"><Feather name="search" size={18} color="#8A928B" /><TextInput placeholder="Tìm món ăn, nguyên liệu..." placeholderTextColor="#A0A8A1" className="ml-3 flex-1 text-[18px]" /><TouchableOpacity onPress={onOpenVoice}><Feather name="mic" size={18} color="#8A928B" /></TouchableOpacity></View><Text className="mt-8 text-[#1E2420] text-[42px] font-bold">Lịch sử tìm kiếm</Text><View className="mt-3 flex-row flex-wrap gap-2">{["Bún chả Hà Nội","Salad ức gà","Healthy keto"].map(x=><View key={x} className="px-4 py-2 rounded-full bg-[#E2E7DF]"><Text>{x}</Text></View>)}</View><Text className="mt-8 text-[#1E2420] text-[42px] font-bold">Gợi ý từ Chef</Text><View className="mt-4 flex-row gap-4"><View className="flex-1"><Image source={{uri:"https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=600&q=80"}} className="h-[180px] w-full rounded-[24px]" /><Text className="mt-2 text-[18px] font-bold">Salad Hy Lạp</Text></View><View className="flex-1"><Image source={{uri:"https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=600&q=80"}} className="h-[180px] w-full rounded-[24px]" /><Text className="mt-2 text-[18px] font-bold">Gà nướng thảo mộc</Text></View></View></ScrollView></View></SafeAreaView>;
+}

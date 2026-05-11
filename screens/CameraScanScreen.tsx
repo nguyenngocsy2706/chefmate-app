@@ -1,0 +1,10 @@
+﻿import React from "react";
+import { Feather } from "@expo/vector-icons";
+import { ImageBackground, Platform, SafeAreaView, Text, TouchableOpacity, View, useWindowDimensions } from "react-native";
+
+type CameraScanScreenProps = { onDetected: () => void; onFail: () => void; };
+
+export default function CameraScanScreen({ onDetected, onFail }: CameraScanScreenProps) {
+  const isWeb = Platform.OS === "web"; const { height } = useWindowDimensions(); const webFrameHeight = Math.min(930, Math.max(760, height - 20));
+  return <SafeAreaView className={isWeb?"flex-1 bg-black items-center justify-center p-2":"flex-1 bg-black"}><View className={isWeb?"w-[390px] bg-black border border-[#BFC7D3]":"flex-1 w-full bg-black"} style={isWeb?{height:webFrameHeight,borderRadius:14,overflow:"hidden"}:undefined}><ImageBackground source={{uri:"https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&w=1200&q=80"}} className="flex-1"><View className="px-6 pt-6 flex-row justify-between"><View className="flex-row items-center"><Feather name="arrow-left" size={20} color="#A8F3A8" /><Text className="ml-4 text-[#A8F3A8] text-[30px] font-bold">Quét nguyên liệu</Text></View><Feather name="zap" size={20} color="#A8F3A8" /></View><View className="mt-20 items-center"><View className="h-[220px] w-[220px] rounded-[40px] border-2 border-[#87E887]" /><Text className="mt-6 text-white">Giữ camera ổn định để nhận diện</Text></View><View className="mt-auto px-6 pb-8"><TouchableOpacity onPress={onDetected} className="rounded-[20px] bg-black/65 p-4"><Text className="text-[#A8F3A8]">✦ GỢI Ý AI: Tìm thấy 2 nguyên liệu...</Text></TouchableOpacity><View className="mt-5 flex-row justify-between items-center"><TouchableOpacity onPress={onFail}><Text className="text-white">THƯ VIỆN</Text></TouchableOpacity><View className="h-20 w-20 rounded-full border-4 border-white items-center justify-center"><View className="h-14 w-14 rounded-full bg-white/50" /></View><TouchableOpacity><Text className="text-white">TÌM KIẾM</Text></TouchableOpacity></View></View></ImageBackground></View></SafeAreaView>;
+}
